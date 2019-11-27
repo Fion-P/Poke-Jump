@@ -8,3 +8,4 @@ export default class Block {
     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
   }
 }
+//test
