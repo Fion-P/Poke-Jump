@@ -1,11 +1,13 @@
-export default class Block {
-  constructor(dimensions) {
-    this.dimensions = dimensions;
-  }
+const Block = require("./block");
 
-  drawBackground(ctx) {
-    ctx.fillStyle = "skyblue";
-    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);
-  }
+
+function Blocks(position) {
+  // this.pos = pos;
+  Block.call(this, {
+    color: "blue",
+    pos: position.pos
+    // console.log("working")
+  });
 }
-//test
+
+module.exports = Blocks;

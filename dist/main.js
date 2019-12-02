@@ -86,15 +86,14 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./src/blocks.js":
-/*!***********************!*\
-  !*** ./src/blocks.js ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./src/block.js":
+/*!**********************!*\
+  !*** ./src/block.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Block; });\nclass Block {\n  constructor(dimensions) {\n    this.dimensions = dimensions;\n  }\n\n  drawBackground(ctx) {\n    ctx.fillStyle = \"skyblue\";\n    ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n  }\n}\n//test\n\n//# sourceURL=webpack:///./src/blocks.js?");
+eval("// export default class Block {\n//   constructor(dimensions) {\n//     this.dimensions = dimensions;\n//   }\n\n//   drawBackground(ctx) {\n//     ctx.fillStyle = \"skyblue\";\n//     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n//   }\n// }\n//test\n\nfunction Block(option) {\n  // this.dimensions = option[\"dim\"];\n  this.color = option.color;\n  this.pos = option.pos;\n\n}\n\n\nBlock.prototype.draw = function (ctx) {\n  // debugger;\n  console.log(\"working\")\n  ctx.beginPath();\n\n  let [x, y] = this.pos;\n  ctx.fillStyle = this.color;\n\n  ctx.beginPath();\n  ctx.rect(x, y, 30, 5);\n  ctx.stroke();\n  ctx.fill();\n\n};\n\nmodule.exports = Block;\n\n//# sourceURL=webpack:///./src/block.js?");
 
 /***/ }),
 
@@ -102,11 +101,21 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*********************!*\
   !*** ./src/game.js ***!
   \*********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return PokeJump; });\n/* harmony import */ var _blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks */ \"./src/blocks.js\");\n\n\nclass PokeJump {\n  constructor(canvas) {\n    this.ctx = canvas.getContext(\"2d\");\n    this.dimensions = { width: canvas.width, height: canvas.height };\n    this.restart();\n  }\n\n\n  restart() {\n    // this.running = false;\n    // this.score = 0;\n    // this.bird = new Bird(this.dimensions);\n    this.level = new Level(this.dimensions);\n    this.level.animate(this.ctx);\n    // this.animate();\n  }\n}\n\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("// import Blocks from './blocks';\n\n// export default class PokeJump {\n//   constructor(canvas) {\n//     this.ctx = canvas.getContext(\"2d\");\n//     this.dimensions = { width: canvas.width, height: canvas.height };\n//     this.restart();\n//   }\n// }\nconst Block = __webpack_require__(/*! ./block */ \"./src/block.js\");\n\nlet Game = function (options) {\n  this.DIM_X = options.DIM_X;\n  this.DIM_Y = options.DIM_Y;\n  this.NUM_BLOCKS = options.NUM_BLOCKS;\n  this.blocks = [];\n  this.addBlocks();\n};\n\nGame.prototype.addBlocks = function () {\n  while (this.NUM_BLOCKS > 0) {\n    let pos = this.randomPosition();\n    this.NUM_BLOCKS--;\n    this.blocks.push(new Block({ \n      pos: pos,\n      color: \"blue\"}));\n  }\n};\n\nGame.prototype.randomPosition = function () {\n  let x = Math.random() * this.DIM_X;\n  let y = Math.random() * this.DIM_Y;\n  return [x, y];\n};\n\nGame.prototype.draw = function (ctx) {\n  // console.log(\"working\")\n  ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);\n  ctx.fillStyle = \"skyblue\";\n  ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);\n  // this.drawBackground(ctx);\n  // console.log(this.blocks);\n  for (let i = 0; i < this.blocks.length; i++) {\n    this.blocks[i].draw(ctx);\n  }\n};\n\nmodule.exports = Game;\n\n\n//# sourceURL=webpack:///./src/game.js?");
+
+/***/ }),
+
+/***/ "./src/game_view.js":
+/*!**************************!*\
+  !*** ./src/game_view.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\nlet GameView = function (game, ctx) {\n  this.game = game;\n  this.ctx = ctx;\n};\n\nGameView.prototype.start = function () {\n  // debugger\n  let that = this;\n    that.game.draw(that.ctx);\n\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 
@@ -114,11 +123,10 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n/* harmony import */ var _blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks */ \"./src/blocks.js\");\n\n\n\nconst canvas = document.getElementById('poke-jump');\nconst ctx = canvasEl.getContext(\"2d\");\nnew _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas);\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\n\nconsole.log(\"Webpack is working!\")\nconst canvas = document.getElementById('poke-jump');\nconst ctx = canvas.getContext(\"2d\");\n\nwindow.addEventListener('DOMContentLoaded', () => {\n  const canvas = document.getElementById('poke-jump');\n  const ctx = canvas.getContext(\"2d\");\n  const Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n  const game = new Game({\n    DIM_X: 500,\n    DIM_Y: 500,\n    NUM_BLOCKS: 10\n  });\n\n  const GameView = __webpack_require__(/*! ./game_view.js */ \"./src/game_view.js\");\n  const view = new GameView(game, ctx);\n  view.start();\n\n\n  window.view = view;\n  window.game = game;\n  window.ctx = ctx;\n  window.Game = Game;\n  window.GameView = GameView;\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
