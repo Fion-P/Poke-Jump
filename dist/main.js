@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("// export default class Block {\n//   constructor(dimensions) {\n//     this.dimensions = dimensions;\n//   }\n\n//   drawBackground(ctx) {\n//     ctx.fillStyle = \"skyblue\";\n//     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n//   }\n// }\n//test\n\nfunction Block(option) {\n  // this.dimensions = option[\"dim\"];\n  this.color = option.color;\n  this.pos = option.pos;\n\n}\n\n\nBlock.prototype.draw = function (ctx) {\n  // debugger;\n  console.log(\"working\")\n  ctx.beginPath();\n\n  let [x, y] = this.pos;\n  ctx.fillStyle = this.color;\n\n  ctx.beginPath();\n  ctx.rect(x, y, 30, 5);\n  ctx.stroke();\n  ctx.fill();\n\n};\n\nmodule.exports = Block;\n\n//# sourceURL=webpack:///./src/block.js?");
+eval("// export default class Block {\n//   constructor(dimensions) {\n//     this.dimensions = dimensions;\n//   }\n\n//   drawBackground(ctx) {\n//     ctx.fillStyle = \"skyblue\";\n//     ctx.fillRect(0, 0, this.dimensions.width, this.dimensions.height);\n//   }\n// }\n//test\n\nfunction Block(option) {\n  // this.dimensions = option[\"dim\"];\n  this.color = option.color;\n  this.pos = option.pos;\n\n}\n\n\nBlock.prototype.draw = function (ctx) {\n  // debugger;\n  console.log(\"working\")\n  ctx.beginPath();\n\n  let [x, y] = this.pos;\n  ctx.fillStyle = this.color;\n\n  ctx.beginPath();\n  ctx.rect(x, y, 50, 8);\n  ctx.stroke();\n  ctx.fill();\n\n};\n\nmodule.exports = Block;\n\n//# sourceURL=webpack:///./src/block.js?");
 
 /***/ }),
 
@@ -104,7 +104,7 @@ eval("// export default class Block {\n//   constructor(dimensions) {\n//     th
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// import Blocks from './blocks';\n\n// export default class PokeJump {\n//   constructor(canvas) {\n//     this.ctx = canvas.getContext(\"2d\");\n//     this.dimensions = { width: canvas.width, height: canvas.height };\n//     this.restart();\n//   }\n// }\nconst Block = __webpack_require__(/*! ./block */ \"./src/block.js\");\n\nlet Game = function (options) {\n  this.DIM_X = options.DIM_X;\n  this.DIM_Y = options.DIM_Y;\n  this.NUM_BLOCKS = options.NUM_BLOCKS;\n  this.blocks = [];\n  this.addBlocks();\n};\n\nGame.prototype.addBlocks = function () {\n  while (this.NUM_BLOCKS > 0) {\n    let pos = this.randomPosition();\n    this.NUM_BLOCKS--;\n    this.blocks.push(new Block({ \n      pos: pos,\n      color: \"blue\"}));\n  }\n};\n\nGame.prototype.randomPosition = function () {\n  let x = Math.random() * this.DIM_X;\n  let y = Math.random() * this.DIM_Y;\n  return [x, y];\n};\n\nGame.prototype.draw = function (ctx) {\n  // console.log(\"working\")\n  ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);\n  ctx.fillStyle = \"skyblue\";\n  ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);\n  // this.drawBackground(ctx);\n  // console.log(this.blocks);\n  for (let i = 0; i < this.blocks.length; i++) {\n    this.blocks[i].draw(ctx);\n  }\n};\n\nmodule.exports = Game;\n\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("// import Blocks from './blocks';\n\n// export default class PokeJump {\n//   constructor(canvas) {\n//     this.ctx = canvas.getContext(\"2d\");\n//     this.dimensions = { width: canvas.width, height: canvas.height };\n//     this.restart();\n//   }\n// }\nconst Block = __webpack_require__(/*! ./block */ \"./src/block.js\");\n\nlet Game = function (options) {\n  this.DIM_X = options.DIM_X;\n  this.DIM_Y = options.DIM_Y;\n  this.NUM_BLOCKS = options.NUM_BLOCKS;\n  this.blocks = [];\n  this.addBlocks();\n};\n\nGame.prototype.addBlocks = function () {\n  while (this.NUM_BLOCKS > 0) {\n    let pos = this.randomPosition();\n    this.NUM_BLOCKS--;\n    this.blocks.push(new Block({ \n      pos: pos,\n      color: \"blue\"}));\n  }\n};\n\nGame.prototype.randomPosition = function () {\n  let x = Math.random() * this.DIM_X;\n  let y = Math.random() * this.DIM_Y;\n  return [x, y];\n};\n\nGame.prototype.draw = function (ctx) {\n  ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);\n  ctx.fillStyle = \"skyblue\";\n  ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);\n  for (let i = 0; i < this.blocks.length; i++) {\n    this.blocks[i].draw(ctx);\n  }\n};\n\nmodule.exports = Game;\n\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -115,7 +115,7 @@ eval("// import Blocks from './blocks';\n\n// export default class PokeJump {\n/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\nlet GameView = function (game, ctx) {\n  this.game = game;\n  this.ctx = ctx;\n};\n\nGameView.prototype.start = function () {\n  // debugger\n  let that = this;\n    that.game.draw(that.ctx);\n\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
+eval("const Game = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n\nlet GameView = function (game, ctx) {\n  this.game = game;\n  this.ctx = ctx;\n};\n\nGameView.prototype.start = function () {\n  // debugger\n  let that = this;\n  that.game.draw(that.ctx);\n\n};\n\nmodule.exports = GameView;\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 

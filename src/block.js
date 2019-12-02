@@ -27,7 +27,7 @@ Block.prototype.draw = function (ctx) {
   ctx.fillStyle = this.color;
 
   ctx.beginPath();
-  ctx.rect(x, y, 30, 5);
+  ctx.rect(x, y, 50, 8);
   ctx.stroke();
   ctx.fill();
 

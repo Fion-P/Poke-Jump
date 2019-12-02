@@ -34,12 +34,9 @@ Game.prototype.randomPosition = function () {
 };
 
 Game.prototype.draw = function (ctx) {
-  // console.log("working")
   ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
   ctx.fillStyle = "skyblue";
   ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
-  // this.drawBackground(ctx);
-  // console.log(this.blocks);
   for (let i = 0; i < this.blocks.length; i++) {
     this.blocks[i].draw(ctx);
   }
