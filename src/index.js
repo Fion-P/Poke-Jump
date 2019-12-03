@@ -14,6 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // const GameView = require('./game_view.js');
   const view = new GameView(canvas);
-  view.start();
+  // view.start();
 
 });

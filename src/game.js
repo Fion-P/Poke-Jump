@@ -6,7 +6,7 @@ class Game {
   constructor(options) {
     this.DIM_X = options.DIM_X;
     this.DIM_Y = options.DIM_Y;
-    this.NUM_BLOCKS = options.NUM_BLOCKS;
+    this.NUM_BLOCKS = 20;
     this.blocks = [];
     this.char = new Character;
     this.addBlocks();
@@ -34,7 +34,7 @@ class Game {
   }
 
   click(e) {
-    console.log("work");
+    // console.log("work");
     
     this.char.accUp();
   }
