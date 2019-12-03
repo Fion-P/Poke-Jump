@@ -19,8 +19,8 @@ function Character(option) {
   this.pos = [250, 400];
   this.vel = [0, 0];
   this.radius = 15;
-  this.color = randomColor();
-  this.accUp();
+  this.color = "purple";
+  // this.accUp();
 }
 
 
@@ -36,6 +36,7 @@ Character.prototype.draw = function (ctx) {
   ctx.fill();
   
 };
+
 
 Character.prototype.move = function() {
   let y  = this.pos[1] + this.vel[1];

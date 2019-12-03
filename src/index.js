@@ -1,28 +1,19 @@
 
 
 
-console.log("Webpack is working!")
-const canvas = document.getElementById('poke-jump');
-const ctx = canvas.getContext("2d");
+import GameView from "./game_view.js";
+console.log("Webpack is working!");
+
+
+// const canvas = document.getElementById('poke-jump');
+// new GameView(canvas);
 
 window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('poke-jump');
-  const ctx = canvas.getContext("2d");
-  const Game = require('./game.js');
-  const game = new Game({
-    DIM_X: 500,
-    DIM_Y: 500,
-    NUM_BLOCKS: 10
-  });
+  // const ctx = canvas.getContext("2d");
 
-  const GameView = require('./game_view.js');
-  const view = new GameView(game, ctx);
+  // const GameView = require('./game_view.js');
+  const view = new GameView(canvas);
   view.start();
 
-
-  window.view = view;
-  window.game = game;
-  window.ctx = ctx;
-  window.Game = Game;
-  window.GameView = GameView;
 });
