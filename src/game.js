@@ -9,12 +9,14 @@
 // }
 const Block = require('./block');
 const Blocks = require('./blocks');
+const Character = require('./character');
 
 let Game = function (options) {
   this.DIM_X = options.DIM_X;
   this.DIM_Y = options.DIM_Y;
   this.NUM_BLOCKS = options.NUM_BLOCKS;
   this.blocks = [];
+  this.char = new Character;
   this.addBlocks();
 };
 
@@ -41,12 +43,31 @@ Game.prototype.draw = function (ctx) {
   for (let i = 0; i < this.blocks.length; i++) {
     this.blocks[i].draw(ctx);
   }
+  this.char.draw(ctx);
 };
 
 Game.prototype.moveObjects = function () {
   for (let i = 0; i < this.blocks.length; i++) {
     this.blocks[i].move();
   }
+  // if (this.char.pos[1] > 0) {
+    this.char.move();
+  // } else {
+  //   this.char.moveDown();
+  // }
+  // let that = this;
+  // setInterval(function () {
+  //   that.char.moveUp();
+  // },
+  //   2000
+  // );
+  // setInterval(function () {
+  //   that.char.moveDown();
+  // },
+  //   20
+  // );
+
+  
 };
 
 module.exports = Game;

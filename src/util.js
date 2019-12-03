@@ -5,7 +5,6 @@ const Util = {
   },
   randomVec(length) {
     const deg = 2 * Math.PI * Math.random();
-    console.log("vec");
     return Util.scale([Math.sin(deg), Math.cos(deg)], length);
   },
   // Scale the length of a vector by the given amount.

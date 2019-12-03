@@ -16,7 +16,7 @@ function Block(option) {
   this.color = option.color;
   this.pos = option.pos;
   this.vel = option["vel"];
-  console.log(option)
+  // console.log(option)
 }
 
 
@@ -45,6 +45,10 @@ Block.prototype.move = function () {
   this.pos[0] = x;
   // this.pos[1] = y;
 
+  
+
 };
+
+
 
 module.exports = Block;
