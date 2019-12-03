@@ -30,7 +30,7 @@ Game.prototype.addBlocks = function () {
 
 Game.prototype.randomPosition = function () {
   let x = Math.random() * this.DIM_X;
-  let y = Math.random() * this.DIM_Y;
+  let y = (Math.random() * this.DIM_Y-30) - 30;
   return [x, y];
 };
 
