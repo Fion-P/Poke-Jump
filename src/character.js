@@ -69,11 +69,11 @@ Character.prototype.move = function() {
 }
 
 Character.prototype.accUp = function() {
-  if (this.vel[1] > -2) {
+  if (this.vel[1] > -100) {
     // console.log("max")
     this.vel[1] -= 10;
   }
-  this.vel[-1] = -2;
+  this.vel[-1] = -100;
   console.log(this.vel[1])
 };
 Character.prototype.moveRight = function() {
