@@ -8,7 +8,13 @@ let GameView = function (game, ctx) {
 GameView.prototype.start = function () {
   // debugger
   let that = this;
-  that.game.draw(that.ctx);
+  // that.game.draw(that.ctx);
+  setInterval(function () {
+    that.game.draw(that.ctx);
+    that.game.moveObjects();
+  },
+    20
+  );
 
 };
 

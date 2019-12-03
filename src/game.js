@@ -8,6 +8,7 @@
 //   }
 // }
 const Block = require('./block');
+const Blocks = require('./blocks');
 
 let Game = function (options) {
   this.DIM_X = options.DIM_X;
@@ -21,9 +22,9 @@ Game.prototype.addBlocks = function () {
   while (this.NUM_BLOCKS > 0) {
     let pos = this.randomPosition();
     this.NUM_BLOCKS--;
-    this.blocks.push(new Block({ 
+    this.blocks.push(new Blocks({ 
       pos: pos,
-      color: "blue"}));
+      }));
   }
 };
 
@@ -39,6 +40,12 @@ Game.prototype.draw = function (ctx) {
   ctx.fillRect(0, 0, this.DIM_X, this.DIM_Y);
   for (let i = 0; i < this.blocks.length; i++) {
     this.blocks[i].draw(ctx);
+  }
+};
+
+Game.prototype.moveObjects = function () {
+  for (let i = 0; i < this.blocks.length; i++) {
+    this.blocks[i].move();
   }
 };
 
